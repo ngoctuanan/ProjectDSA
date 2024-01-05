@@ -8,43 +8,44 @@ import GameEngine.Map;
 import GameScreen.*;
 
 public class GameManager {
-    private  GameScreen introScreen, pauseScreen, endGameScreen, resultScreen, playScreen,menuScreen,currenScreen;
+    private GameScreen introScreen, pauseScreen, endGameScreen, resultScreen, playScreen, menuScreen, currenScreen;
 
     private GameThread gameThread;
     public GameWindow gameWindow;
-    public GameManager(GameWindow gameWindow){
+
+    public GameManager(GameWindow gameWindow) {
         this.gameWindow = gameWindow;
         createIntro();
         createMenu();
         currenScreen = introScreen;
     }
 
-   
-
-    public void updateSizeScreen(){
+    public void updateSizeScreen() {
         introScreen.updateSize();
         menuScreen.updateSize();
-        if(playScreen!= null)playScreen.updateSize();
+        if (playScreen != null)
+            playScreen.updateSize();
     }
-//------add screen method -----------------------------------------
-    public void addScreen (GameWindow gameWindow){
+
+    // ------add screen method -----------------------------------------
+    public void addScreen(GameWindow gameWindow) {
         gameWindow.add(introScreen);
         gameWindow.add(menuScreen);
     }
 
-    public static void addScreen(GameScreen screen,GameWindow gameWindow){
+    public static void addScreen(GameScreen screen, GameWindow gameWindow) {
         gameWindow.add(screen);
     }
 
-//=============intro screen =============================================
-    public void createIntro(){
+    // =============intro screen =============================================
+    public void createIntro() {
         GameButton start = new GameButton() {
 
             @Override
             public void clickOn() {
                 displayMenu();
             }
-            
+
         };
         start.setText("START");
         start.setForeground(Color.BLACK);
@@ -53,22 +54,23 @@ public class GameManager {
             @Override
             public void clickOn() {
                 System.exit(0);
-               
+
             }
-            
+
         };
         exit.setText("EXIT");
         exit.setForeground(Color.BLACK);
 
-        introScreen = new IntroScreen(start,exit);
+        introScreen = new IntroScreen(start, exit);
 
     }
-//end intro screen 
+    // end intro screen
 
-//======== Menu Screen ==========================================================
+    // ======== Menu Screen
+    // ==========================================================
 
-    public void createMenu(){
-        //---------set EASY button--------
+    public void createMenu() {
+        // ---------set EASY button--------
         GameButton easy = new GameButton() {
 
             @Override
@@ -76,12 +78,12 @@ public class GameManager {
                 startNewPlay(Level.EASY);
                 System.out.println("EASY clicked");
             }
-            
+
         };
         easy.setText("EASY");
         easy.setForeground(Color.BLACK);
 
-        //--------set MEDIUM button------------
+        // --------set MEDIUM button------------
         GameButton medium = new GameButton() {
 
             @Override
@@ -89,48 +91,49 @@ public class GameManager {
                 startNewPlay(Level.MEDIUM);
                 System.out.println("Medium clicked ");
             }
-            
+
         };
         medium.setText("MEDIUM");
         medium.setForeground(Color.BLACK);
-        //---------set HARD button---------
+        // ---------set HARD button---------
         GameButton hard = new GameButton() {
             @Override
-            public void clickOn(){
+            public void clickOn() {
                 startNewPlay(Level.HARD);
                 System.out.println("Hard clicked");
             }
         };
         hard.setText("HARD");
         hard.setForeground(Color.BLACK);
-        //--------set HighScore button ------------
+        // --------set HighScore button ------------
         GameButton highScore = new GameButton() {
             @Override
-            public void clickOn(){
+            public void clickOn() {
 
                 System.out.println("High score clicked");
             }
         };
         highScore.setText("High Score");
         highScore.setForeground(Color.BLACK);
-        //-------set BACK button-----------------------------------------
+        // -------set BACK button-----------------------------------------
         GameButton back = new GameButton() {
             @Override
-            public void clickOn(){
+            public void clickOn() {
                 displayIntro();
                 System.out.println("back clicked");
             }
         };
         back.setText("BACK");
         back.setForeground(Color.black);
-        menuScreen = new MenuScreen(easy,medium,hard,highScore,back);
+        menuScreen = new MenuScreen(easy, medium, hard, highScore, back);
     }
-// End menuScreen 
+    // End menuScreen
 
-//===== PlayScreen ============================================================
+    // ===== PlayScreen ============================================================
 
-//----------create new play ---------------------------------------------------------------
-    public void startNewPlay(Level level){
+    // ----------create new play
+    // ---------------------------------------------------------------
+    public void startNewPlay(Level level) {
         Map newMap = new Map(level);
         MapManager.setPlayingMap(newMap);
         GameButton quiButton = new GameButton() {
@@ -140,11 +143,11 @@ public class GameManager {
                 displayMenu();
                 gameWindow.remove(playScreen);
             }
-            
+
         };
         quiButton.setText("QUIT");
         quiButton.setForeground(Color.black);
-        PlayScreen newplayScreen = new PlayScreen (newMap,quiButton);
+        PlayScreen newplayScreen = new PlayScreen(newMap, quiButton);
         playScreen = newplayScreen;
         gameWindow.add(playScreen);
         playScreen.updateSize();
@@ -154,17 +157,26 @@ public class GameManager {
         gameThread.start();
     }
 
-    public void endPlay(){
-        createResult(MapManager.getState(),MapManager.getMapScore());
+    public void endPlay() {
+        MapManager.showBomb();
+        currenScreen.repaint();
+        try {
+            Thread.currentThread().sleep(2000);
+        } catch (Exception e) {
+
+            System.out.println(e);
+        }
+        createResult(MapManager.getState(), MapManager.getMapScore());
         gameWindow.remove(playScreen);
     }
-//End play screen 
-//==== Result Screen ========================================
-    public void createResult(GameState state, int score){
+
+    // End play screen
+    // ==== Result Screen ========================================
+    public void createResult(GameState state, int score) {
 
         GameButton okButton = new GameButton() {
             @Override
-            public void clickOn(){
+            public void clickOn() {
                 displayMenu();
                 gameWindow.remove(resultScreen);
                 System.out.println("OK clicked");
@@ -173,16 +185,15 @@ public class GameManager {
         okButton.setText("OK");
         okButton.setForeground(Color.BLACK);
 
-        this.resultScreen = new ResultScreen(okButton,score,MapManager.getPlayingTime(),state);
+        this.resultScreen = new ResultScreen(okButton, score, MapManager.getPlayingTime(), state);
 
         gameWindow.add(resultScreen);
         resultScreen.updateSize();
         displayResult();
     }
 
-
-
-//--------get/set method---------------------------------------------------------------------------------
+    // --------get/set
+    // method---------------------------------------------------------------------------------
     public GameScreen getIntroScreen() {
         return introScreen;
     }
@@ -194,32 +205,40 @@ public class GameManager {
     public GameScreen getPauseScreen() {
         return pauseScreen;
     }
-    
+
     public GameScreen getPlayScreen() {
         return playScreen;
     }
+
     public GameScreen getResultScreen() {
         return resultScreen;
     }
+
     public GameScreen getMenuScreen() {
         return menuScreen;
     }
-//--------End of get/set method---------------------------------------------------------------------
+    // --------End of get/set
+    // method---------------------------------------------------------------------
 
-//-------------display method---------------------------------------------------------------
-    public void displayIntro(){
+    // -------------display
+    // method---------------------------------------------------------------
+    public void displayIntro() {
         displayScreen(introScreen);
     }
-    public void displayMenu(){
+
+    public void displayMenu() {
         displayScreen(menuScreen);
     }
-    public void displayPlayScreen(){
+
+    public void displayPlayScreen() {
         displayScreen(playScreen);
     }
-    public void displayResult(){
+
+    public void displayResult() {
         displayScreen(resultScreen);
     }
-    public void displayScreen(GameScreen screen){
+
+    public void displayScreen(GameScreen screen) {
         currenScreen.setVisible(false);
         screen.requestFocus();
         screen.setVisible(true);
