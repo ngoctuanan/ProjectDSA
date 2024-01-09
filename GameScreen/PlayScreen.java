@@ -152,5 +152,11 @@ public class PlayScreen extends GameScreen {
         flagLabel.setText("FLAG: " + String.valueOf(numFlag));
     }
 //------------------------------------------
+
+    @Override
+    public void updateFontSize() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateFontSize'");
+    }
     
 }

@@ -5,9 +5,8 @@ import java.awt.Graphics;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-import javax.swing.SwingUtilities;
 
-import Data.LoadFile;
+import Data.FileOperations;
 
 
 public class IntroScreen extends GameScreen {
@@ -26,7 +25,7 @@ public class IntroScreen extends GameScreen {
     @Override
     public void defineScreen() {
         
-        this.backGroundImage = LoadFile.loadImage("GameScreen/image/intro_background.jpg");
+        this.backGroundImage = FileOperations.loadImage("GameScreen/image/intro_background.jpg");
 
         this.addButton();
         this.setLayout(null);
@@ -53,12 +52,12 @@ public class IntroScreen extends GameScreen {
         
     }
 //-------------------------------------------------------------------------------------------------
-    @Override
-    public void updateSize() {
+    // @Override
+    // public void updateSize() {
         
-        this.setSize( SwingUtilities.getWindowAncestor(this).getSize());
-        //System.out.println("xx"+this.getSize());
-    }
+    //     this.setSize( SwingUtilities.getWindowAncestor(this).getSize());
+    //     //System.out.println("xx"+this.getSize());
+    // }
 
 //-------------------------------------------------------------------------------------------------------
 

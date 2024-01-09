@@ -2,7 +2,7 @@ package GameEngine;
 
 import javax.swing.ImageIcon;
 
-import Data.LoadFile;
+import Data.FileOperations;
 
 public enum CellImage {
     BRICK("Media/brick.png"),
@@ -21,6 +21,6 @@ public enum CellImage {
     ImageIcon image;
 
     CellImage (String path){
-        image = LoadFile.loadImage(path);
+        image = FileOperations.loadImage(path);
     }
 }

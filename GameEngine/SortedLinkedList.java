@@ -7,26 +7,27 @@ public class SortedLinkedList {
     public SortedLinkedList(){
         
     }
-    public void add (int data ){
+    public void add (long score,long time ){
+
+        Node newNode = new Node(score,time);
+
         if(head == null){
-            this.head = new Node(data);
+            this.head = newNode;
             this.last = head;
             return;
         }
 
         Node current = head;
         
-        while (current.getNextNode()!= null && current.getData() > data) {
+        while (current.getNextNode()!= null && current.getNextNode().compareTo(newNode) == 1) {
             current = current.getNextNode();
         }
 
         if(current == head ) {
-            head = new Node(data);
+            head = newNode;
             head.setNextNode(current);
         }
         else{
-            Node newNode = new Node(data);
-
             newNode.setNextNode(current.getNextNode());
             current.setNextNode(newNode);
 
@@ -34,6 +35,18 @@ public class SortedLinkedList {
         }
     }
     
+    @Override
+    public String toString() {
+        Node current = head;
+        String result = "<html><pre>SCORE\tTIME";
+
+        while (current != null) {
+            result = result +"\n"+ current.toString();
+            current = current.getNextNode();    
+        }
+        result = result + "</pre></html";
+        return result;
+    }
 //--------------------------------------
     public Node getHead() {
         return head;
@@ -46,6 +59,14 @@ public class SortedLinkedList {
     }
     public void setLast(Node last) {
         this.last = last;
+    }
+    public void display (){
+        Node  current = head; 
+
+        while ( current != null) {
+            System.out.println(current);
+            current = current.getNextNode();
+        }
     }
 }
 
