@@ -25,13 +25,6 @@ public class ScoreManager {
             highScore.add(score, time);
             storeHighScore("Media/HighScore.txt");
     }
-
-    
-    public static void main(String args[]){
-        ScoreManager.setHighScore("Media/HighScore.txt");
-        ScoreManager.displayHighscore();
-        System.out.println(highscoreToString());
-    }
   
     public static String highscoreToString(){
         return highScore.toString();
