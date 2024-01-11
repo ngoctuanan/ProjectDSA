@@ -73,8 +73,25 @@ public class IntroScreen extends GameScreen {
     }
 
     public void updatePosition(){
-        start.setBounds((this.getWidth() - start.getWidth())/2, this.getHeight()/2,start.getPreferredSize().width,start.getPreferredSize().height);
-        exit.setBounds((this.getWidth() - exit.getWidth())/2, this.getHeight()/2 + start.getBounds().height+1,exit.getPreferredSize().width,exit.getPreferredSize().height);
+        int screenWidth = this.getWidth();
+        int screenHeight = this.getHeight();
+    
+        int startWidth = start.getPreferredSize().width;
+        int startHeight = start.getPreferredSize().height;
+    
+        int exitWidth = exit.getPreferredSize().width;
+        int exitHeight = exit.getPreferredSize().height;
+    
+        // Đặt nút "start" vào giữa theo chiều ngang và dọc
+        int startX = (screenWidth - startWidth) / 2;
+        int startY = (screenHeight - startHeight - exitHeight - 1) / 2;
+    
+        // Đặt nút "exit" ngay dưới nút "start" với một khoảng cách 1 pixel
+        int exitX = (screenWidth - exitWidth) / 2;
+        int exitY = startY + startHeight + 1;
+    
+        start.setBounds(startX, startY, startWidth, startHeight);
+        exit.setBounds(exitX, exitY, exitWidth, exitHeight);
     }
 //--------------------------------------------------------------------------------------------------------
 }
