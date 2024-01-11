@@ -93,7 +93,7 @@ public class MenuScreen extends GameScreen {
         buttonPanel.setLocation(panelX, panelY);
         buttonPanel.setLayout(new GridLayout(5, 1));
     
-        // Cập nhật kích thước phông chữ của các nút
+        
         Font font = new Font(easy.getFont().getFontName(), Font.PLAIN, buttonPanelWidth / 10);  
         easy.setFont(font);
         medium.setFont(font);
@@ -101,11 +101,9 @@ public class MenuScreen extends GameScreen {
         highScore.setFont(font);
         back.setFont(font);
     
-        // Cập nhật vị trí của các nút để đặt chúng vào giữa buttonPanel
-        // Cập nhật vị trí của các nút để đặt chúng vào giữa buttonPanel
-        // Cập nhật vị trí của các nút để đặt chúng vào giữa buttonPanel
-        int startX = (buttonPanelWidth - easy.getPreferredSize().width) / 2;  // Bắt đầu từ giữa của buttonPanel
-        int startY = (buttonPanelHeight - easy.getPreferredSize().height) / 2;  // Bắt đầu từ giữa của buttonPanel
+        
+        int startX = (buttonPanelWidth - easy.getPreferredSize().width) / 2; 
+        int startY = (buttonPanelHeight - easy.getPreferredSize().height) / 2;  
 
         easy.setBounds(startX, startY, easy.getPreferredSize().width, easy.getPreferredSize().height);
 
