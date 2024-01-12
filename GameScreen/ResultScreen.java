@@ -92,7 +92,7 @@ public class ResultScreen extends GameScreen {
             int x = (this.getWidth() - labelWidth) / 2;
             int y = (this.getHeight() - labelHeight) / 2;
 
-            label.setBounds(x, y, labelWidth, labelHeight);
+            label.setBounds(x , y, labelWidth, labelHeight);
         }
     }
 
