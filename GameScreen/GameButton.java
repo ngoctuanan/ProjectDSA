@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
 public abstract class GameButton extends JLabel implements MouseListener {
+    
     public GameButton(){
         this.addMouseListener(this);
     }
