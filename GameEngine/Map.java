@@ -179,7 +179,7 @@ public class Map {
         }   
         
     }
-
+// hello
     public void shine(Cell cell){
         Stack<Cell> cellStack = new Stack<>();
         cellStack.push(cell);
