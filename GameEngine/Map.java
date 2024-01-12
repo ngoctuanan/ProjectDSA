@@ -175,11 +175,13 @@ public class Map {
                 mapState = GameState.WIN;
                 endTime = System.nanoTime();
             }
-            //System.out.println(numOfOpenCell +" " +numOfTickedBoom);
+            System.out.println(numOfOpenCell +" " +numOfTickedBoom);
         }   
         
     }
-
+// hello
+//hello x2
+//hello x3
     public void shine(Cell cell){
         Stack<Cell> cellStack = new Stack<>();
         cellStack.push(cell);
