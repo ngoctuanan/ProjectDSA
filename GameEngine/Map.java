@@ -180,6 +180,8 @@ public class Map {
         
     }
 // hello
+//hello x2
+
     public void shine(Cell cell){
         Stack<Cell> cellStack = new Stack<>();
         cellStack.push(cell);
