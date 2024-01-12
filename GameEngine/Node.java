@@ -38,7 +38,7 @@ public class Node {
 
     @Override
     public String toString() {
-        return String.valueOf(score) + "          " + String.valueOf(time);
+        return String.valueOf(score) + "\t" + (new Time(time).toString());
     }
 
 }

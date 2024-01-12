@@ -43,10 +43,11 @@ public class SortedLinkedList {
     public String toString() {
         Node current = head;
         String result = "<html><pre>SCORE\tTIME";
-
-        while (current != null) {
+        int i = 0;
+        while (current != null && i < 10) {
             result = result +"\n"+ current.toString();
-            current = current.getNextNode();    
+            current = current.getNextNode();
+            i++;    
         }
         result = result + "</pre></html";
         return result;
