@@ -94,17 +94,4 @@ public class FileOperations {
         return file;
     }
 
-    // public static void main(String args[] ){
-    //     File file = createFile("Media/HighScore.txt");
-        
-    //     try {
-    //         FileWriter fileWriter = new FileWriter(file);
-    //         fileWriter.write("something");      
-    //         fileWriter.close();
-    //     } catch (IOException e) {
-    //         // TODO Auto-generated catch block
-    //         e.printStackTrace();
-    //     }
-
-    // }
 }
