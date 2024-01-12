@@ -87,12 +87,12 @@ public class Map {
             }while ( !checkValidBoom(bomRow, bomColumn));
 
             map[bomRow][bomColumn].setData(-1);
-            
+            System.out.println(i);
         }
     }
 
     public boolean checkValidBoom(int bomRow , int bomColumn){
-
+        if(map[bomRow][bomColumn].getData() == -1) return false;
         for(int i = -1; i<= 1; i++ )
             for(int j =-1; j<= 1; j++)
                 if(isInMap(bomRow+i, bomColumn+j))            
