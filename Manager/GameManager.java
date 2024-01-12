@@ -117,7 +117,7 @@ public class GameManager {
                 System.out.println("High score clicked");
             }
         };
-        highScore.setText("High Score");
+        highScore.setText("HIGH SCORE");
         highScore.setForeground(Color.BLACK);
         // -------set BACK button-----------------------------------------
         GameButton back = new GameButton() {
