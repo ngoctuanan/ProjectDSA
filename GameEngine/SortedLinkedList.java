@@ -24,7 +24,7 @@ public class SortedLinkedList {
         }
 
         if(current == head ) {
-            if(head.compareTo(newNode) == 1) {
+            if(head.compareTo(newNode) == 1) { 
                 head.setNextNode(newNode);
                 return;
             }

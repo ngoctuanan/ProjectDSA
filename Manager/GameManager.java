@@ -20,6 +20,7 @@ public class GameManager {
         createMenu();
         createHighScore();
         currenScreen = introScreen;
+        SoundManager.playIntroSound();
         
     }
 
