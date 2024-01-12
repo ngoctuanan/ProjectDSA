@@ -5,15 +5,12 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
+import Data.FileOperations;
 
 
 public class MenuScreen extends GameScreen {
-    private JPanel buttonPanel ;
+    
     private GameButton easy,medium,hard,highScore,back;
-    private JScrollPane scrollPane;
 
     public MenuScreen(GameButton easyButton, GameButton mediumButton, GameButton hardButton, GameButton highScoreButton, GameButton backButton){
         super();
@@ -23,95 +20,86 @@ public class MenuScreen extends GameScreen {
         this.hard = hardButton;
         this.highScore = highScoreButton;
         this.back = backButton;
-        defineScreen();
+        this.defineScreen();
+        
 
     }
 
 //-------------------------------------------------------------
 
+//-------------------------------------------------------------------------------------------------
+
     @Override
     public void defineScreen() {
        
-        setButtonLabel();
-        scrollPane = new JScrollPane(buttonPanel);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        this.add(scrollPane);
+        
 
+        this.backGroundImage = FileOperations.loadImage("GameScreen/image/menuPlay.jpg");
+        this.addButton();
         this.setLayout(null);
-        buttonPanel.setBackground(Color.CYAN);
+
+        easy.setForeground(Color.WHITE);  
+        medium.setForeground(Color.WHITE);
+        hard.setForeground(Color.WHITE);
+        highScore.setForeground(Color.WHITE);
+        back.setForeground(Color.WHITE);
+        
+        
         updateButtonLabelSize();
         
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e){
                 updateButtonLabelSize();
+                updateFontSize();
                 super.componentResized(e);
             }
-        });
-
-         this.setVisible(false);
-        
+        });    
     }
-    
     @Override
-    public void updateSize() {
-        this.setSize( SwingUtilities.getWindowAncestor(this).getSize());
-        
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (this.backGroundImage != null){
+        g.drawImage(this.backGroundImage.getImage(), 0, 0, this.getWidth(),this.getHeight(),this);
+        }
     }
+    public void addButton(){
+        this.add(easy); 
+        this.add(medium); 
+        this.add(hard); 
+        this.add(highScore);
+        this.add(back);
 
-//------------------------------------------------------------------
-    public void setButtonLabel(){
-        buttonPanel = new JPanel();
-        //---------------------------------------------------
-        buttonPanel.add(easy);
-        buttonPanel.add(medium);
-        buttonPanel.add(hard);
-        buttonPanel.add(highScore);
-        buttonPanel.add(back);
-        buttonPanel.setLayout(new GridLayout(5,1));
-        //-----------------------------------------------------------
+       
     }
+//------------------------------------------------------------------
+   
 //------------------------------------------------------------------------------
     public void updateButtonLabelSize(){
-        
-
         int screenWidth = this.getWidth();
         int screenHeight = this.getHeight();
-    
-        // Cập nhật kích thước và vị trí của scrollPane
-        scrollPane.setSize(screenWidth, screenHeight);
-        scrollPane.setLocation(0, 0);
-    
-        // Cập nhật kích thước của buttonPanel và đặt giữa màn hình
-        int buttonPanelWidth = screenWidth / 2; // Chỉ sử dụng nửa chiều rộng của màn hình
-        int buttonPanelHeight = screenHeight / 2;
-        int panelX = (screenWidth - buttonPanelWidth) / 2;
-        int panelY = (screenHeight - buttonPanelHeight) / 2;
         
-        buttonPanel.setSize(buttonPanelWidth, buttonPanelHeight);
-        buttonPanel.setLocation(panelX, panelY);
-        buttonPanel.setLayout(new GridLayout(5, 1));
     
         
-        Font font = new Font(easy.getFont().getFontName(), Font.PLAIN, buttonPanelWidth / 10);  
-        easy.setFont(font);
-        medium.setFont(font);
-        hard.setFont(font);
-        highScore.setFont(font);
-        back.setFont(font);
+        int buttonWidth = screenWidth / 2;
+        int buttonHeight = screenHeight / 10; 
     
-        
-        int startX = (buttonPanelWidth - easy.getPreferredSize().width) / 2; 
-        int startY = (buttonPanelHeight - easy.getPreferredSize().height) / 2;  
+        int panelX = (screenWidth - buttonWidth ) / 2;
+        int panelY = (screenHeight - 5 * buttonHeight) / 2; 
 
-        easy.setBounds(startX, startY, easy.getPreferredSize().width, easy.getPreferredSize().height);
-
+        int offset = 35 ;
+    
+        
+        easy.setBounds(panelX + 80 , panelY - 40, buttonWidth, buttonHeight);
+        medium.setBounds(panelX + 55, panelY + buttonHeight + offset - 40, buttonWidth, buttonHeight);
+        hard.setBounds(panelX + 80, panelY + 2 * (buttonHeight + offset) - 40, buttonWidth, buttonHeight);
+        highScore.setBounds(panelX + 20, panelY + 3 * (buttonHeight + offset) -40, buttonWidth, buttonHeight);
+        back.setBounds(panelX + 80, panelY + 4 * (buttonHeight + offset) - 40, buttonWidth, buttonHeight);
     }
 
     public void updateFontSize(){
 
-        Font font = new Font(easy.getFont().getFontName(),Font.PLAIN,buttonPanel.getWidth()/10);
+        Font font = new Font(easy.getFont().getFontName(),Font.PLAIN,this.getWidth()/15);
 
         easy.setFont(font);
         medium.setFont(font);
@@ -120,5 +108,7 @@ public class MenuScreen extends GameScreen {
         back.setFont(font);
 
     }
+    //--------------------------------------------------------------------------------------------------
+
     
 }

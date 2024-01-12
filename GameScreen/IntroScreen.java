@@ -67,7 +67,7 @@ public class IntroScreen extends GameScreen {
     }
 //--------------------------------------------------------------------------------------------------------
     public void updateFontSize(){
-        Font font = new Font(start.getFont().getFontName(),Font.PLAIN,this.getWidth()/20);
+        Font font = new Font(start.getFont().getFontName(),Font.PLAIN,this.getWidth()/10);
         start.setFont(font);
         exit.setFont(font);
     }
@@ -82,11 +82,11 @@ public class IntroScreen extends GameScreen {
         int exitWidth = exit.getPreferredSize().width;
         int exitHeight = exit.getPreferredSize().height;
     
-        // Đặt nút "start" vào giữa theo chiều ngang và dọc
+        
         int startX = (screenWidth - startWidth) / 2;
         int startY = (screenHeight - startHeight - exitHeight - 1) / 2;
     
-        // Đặt nút "exit" ngay dưới nút "start" với một khoảng cách 1 pixel
+        
         int exitX = (screenWidth - exitWidth) / 2;
         int exitY = startY + startHeight + 1;
     
