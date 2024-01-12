@@ -26,6 +26,9 @@ public class Node {
     public long getScore() {
         return score;
     }
+    public long getTime() {
+        return time;
+    }
     public void setData(int data) {
         this.score = data;
     }
@@ -38,7 +41,10 @@ public class Node {
 
     @Override
     public String toString() {
-        return String.valueOf(score) + "\t" + (new Time(time).toString());
+        return String.valueOf(score) + "\t " + String.valueOf(time);
+    }
+    public String getNodeString(){
+        return String.valueOf(score) + "\t " + (new Time(time)).toString();
     }
 
 }
