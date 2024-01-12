@@ -175,7 +175,7 @@ public class Map {
                 mapState = GameState.WIN;
                 endTime = System.nanoTime();
             }
-            // System.out.println(numOfOpenCell +" " +numOfTickedBoom);
+            System.out.println(numOfOpenCell +" " +numOfTickedBoom);
         }   
         
     }
