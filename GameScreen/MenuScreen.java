@@ -90,11 +90,11 @@ public class MenuScreen extends GameScreen {
         int offset = 35 ;
     
         
-        easy.setBounds(panelX + 80 , panelY - 40, buttonWidth, buttonHeight);
-        medium.setBounds(panelX + 55, panelY + buttonHeight + offset - 40, buttonWidth, buttonHeight);
-        hard.setBounds(panelX + 80, panelY + 2 * (buttonHeight + offset) - 40, buttonWidth, buttonHeight);
-        highScore.setBounds(panelX + 20, panelY + 3 * (buttonHeight + offset) -40, buttonWidth, buttonHeight);
-        back.setBounds(panelX + 80, panelY + 4 * (buttonHeight + offset) - 40, buttonWidth, buttonHeight);
+        easy.setBounds(panelX + 80 , panelY - 70, buttonWidth, buttonHeight);
+        medium.setBounds(panelX + 55, panelY + buttonHeight + offset - 70, buttonWidth, buttonHeight);
+        hard.setBounds(panelX + 80, panelY + 2 * (buttonHeight + offset) - 70, buttonWidth, buttonHeight);
+        highScore.setBounds(panelX + 20, panelY + 3 * (buttonHeight + offset) -70, buttonWidth, buttonHeight);
+        back.setBounds(panelX + 80, panelY + 4 * (buttonHeight + offset) - 70, buttonWidth, buttonHeight);
     }
 
     public void updateFontSize(){
