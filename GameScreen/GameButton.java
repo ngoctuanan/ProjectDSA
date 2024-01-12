@@ -42,7 +42,7 @@ public abstract class GameButton extends JLabel implements MouseListener {
             this.setForeground(Color.GRAY);
         }
         public void stopFocus(){
-            this.setForeground(Color.BLACK);
+            this.setForeground(Color.WHITE);
         }
         public abstract void clickOn();
     

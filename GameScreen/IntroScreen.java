@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.Color;
 
 
 import Data.FileOperations;
@@ -25,10 +26,13 @@ public class IntroScreen extends GameScreen {
     @Override
     public void defineScreen() {
         
-        this.backGroundImage = FileOperations.loadImage("GameScreen/image/intro_background.jpg");
+        this.backGroundImage = FileOperations.loadImage("GameScreen/image/intro_background.png");
 
         this.addButton();
         this.setLayout(null);
+
+        start.setForeground(Color.WHITE);  
+        exit.setForeground(Color.WHITE);
         
         updatePosition();
         updateFontSize();
