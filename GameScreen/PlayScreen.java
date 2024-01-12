@@ -51,11 +51,11 @@ public class PlayScreen extends GameScreen {
     @Override
     public void updateSize() {
         this.setSize( SwingUtilities.getWindowAncestor(this).getSize());
-        playPanel.setSize(this.getWidth()-20,this.getHeight()*4/6);
-        menuPanel.setSize(this.getWidth()-20,this.getHeight() *1/6);
+        playPanel.setSize(this.getWidth()-10,this.getHeight()*4/6);
+        menuPanel.setSize(this.getWidth()-10,this.getHeight() *1/6);
 
-        menuPanel.setBounds(0,0,this.getWidth()-20,this.getHeight() * 1/6);
-        playPanel.setBounds(0, menuPanel.getHeight(), this.getWidth()-20, this.getHeight()*4/6);
+        menuPanel.setBounds(0,0,this.getWidth()-10,this.getHeight() * 1/6);
+        playPanel.setBounds(0, menuPanel.getHeight(), this.getWidth()-10, this.getHeight()*4/6);
 
         //System.out.println("Play panel" + this.getSize()+"\n\t"+menuPanel.getSize()+"\n\t"+playPanel.getSize());
     }
@@ -135,7 +135,7 @@ public class PlayScreen extends GameScreen {
         menuPanel.addComponentListener(new ComponentAdapter(){
             @Override
             public void componentResized(ComponentEvent e) {
-                Font font = new Font(timeLabel.getFont().getName(),Font.PLAIN,menuPanel.getWidth()/20);
+                Font font = new Font(timeLabel.getFont().getName(),Font.PLAIN ,menuPanel.getWidth()/20);
 
                 timeLabel.setFont(font);
                 menuPanel.setFont(font);
@@ -152,5 +152,11 @@ public class PlayScreen extends GameScreen {
         flagLabel.setText("FLAG: " + String.valueOf(numFlag));
     }
 //------------------------------------------
+
+    @Override
+    public void updateFontSize() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateFontSize'");
+    }
     
 }

@@ -4,10 +4,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.Color;
 
-import javax.swing.SwingUtilities;
 
-import Data.LoadFile;
+import Data.FileOperations;
 
 
 public class IntroScreen extends GameScreen {
@@ -26,10 +26,13 @@ public class IntroScreen extends GameScreen {
     @Override
     public void defineScreen() {
         
-        this.backGroundImage = LoadFile.loadImage("GameScreen/image/intro_background.jpg");
+        this.backGroundImage = FileOperations.loadImage("GameScreen/image/intro_background.png");
 
         this.addButton();
         this.setLayout(null);
+
+        start.setForeground(Color.WHITE);  
+        exit.setForeground(Color.WHITE);
         
         updatePosition();
         updateFontSize();
@@ -53,12 +56,12 @@ public class IntroScreen extends GameScreen {
         
     }
 //-------------------------------------------------------------------------------------------------
-    @Override
-    public void updateSize() {
+    // @Override
+    // public void updateSize() {
         
-        this.setSize( SwingUtilities.getWindowAncestor(this).getSize());
-        //System.out.println("xx"+this.getSize());
-    }
+    //     this.setSize( SwingUtilities.getWindowAncestor(this).getSize());
+    //     //System.out.println("xx"+this.getSize());
+    // }
 
 //-------------------------------------------------------------------------------------------------------
 
@@ -68,14 +71,31 @@ public class IntroScreen extends GameScreen {
     }
 //--------------------------------------------------------------------------------------------------------
     public void updateFontSize(){
-        Font font = new Font(start.getFont().getFontName(),Font.PLAIN,this.getWidth()/20);
+        Font font = new Font(start.getFont().getFontName(),Font.PLAIN,this.getWidth()/10);
         start.setFont(font);
         exit.setFont(font);
     }
 
     public void updatePosition(){
-        start.setBounds((this.getWidth() - start.getWidth())/2, this.getHeight()/2,start.getPreferredSize().width,start.getPreferredSize().height);
-        exit.setBounds((this.getWidth() - exit.getWidth())/2, this.getHeight()/2 + start.getBounds().height+1,exit.getPreferredSize().width,exit.getPreferredSize().height);
+        int screenWidth = this.getWidth();
+        int screenHeight = this.getHeight();
+    
+        int startWidth = start.getPreferredSize().width;
+        int startHeight = start.getPreferredSize().height;
+    
+        int exitWidth = exit.getPreferredSize().width;
+        int exitHeight = exit.getPreferredSize().height;
+    
+        
+        int startX = (screenWidth - startWidth) / 2;
+        int startY = (screenHeight - startHeight - exitHeight - 1) / 2;
+    
+        
+        int exitX = (screenWidth - exitWidth) / 2;
+        int exitY = startY + startHeight + 1;
+    
+        start.setBounds(startX, startY, startWidth, startHeight);
+        exit.setBounds(exitX, exitY, exitWidth, exitHeight);
     }
 //--------------------------------------------------------------------------------------------------------
 }
