@@ -76,7 +76,7 @@ public class Map {
     }
     //------set boom in map --------------------------------------
     public void randomBoom(int numOfBoom){
-
+        
         for(int i=0; i< numOfBoom; i++ ){
             int bomRow;
             int bomColumn; 
@@ -148,10 +148,23 @@ public class Map {
         //         numOfTickedBoom ++;   
         
         cell.tick();
-        
+        checkState();
 
     }
+    public void checkState (){
+        if(numOfBoom - numOfFlag + numOfOpenCell == map.length * map[0].length && GameState.LOSE != mapState){
+            wingame();
+        }
+    }
 
+    public void wingame(){
+        mapState = GameState.WIN;
+        endTime = System.nanoTime();
+    }
+    public void loseGame(){
+        mapState = GameState.LOSE;
+                endTime = System.nanoTime();
+    }
     public void open(Cell cell){
 
         if(firstCell == true){
@@ -163,18 +176,14 @@ public class Map {
             cell.open();
             if(cell.getData() == -1){
                 System.out.println("LOSE");
-                mapState = GameState.LOSE;
-                endTime = System.nanoTime();
+                loseGame();
             }
             else
                 if(cell.getData() == 0 || cell.getData() == -2) shine(cell);
 
             numOfOpenCell ++;
 
-            if(numOfBoom - numOfFlag + numOfOpenCell == map.length * map[0].length && GameState.LOSE != mapState){
-                mapState = GameState.WIN;
-                endTime = System.nanoTime();
-            }
+            checkState();
             System.out.println(numOfOpenCell +" " +numOfTickedBoom);
         }   
         
